@@ -16,12 +16,15 @@ Machine::Machine() : tape(0), stop(0) {
 Machine::~Machine() {
 	std::map<std::string, std::map<int, Action*>* >::iterator it = states.begin();
 	while(it != states.end()) {
-		std::map<int, Action*>::iterator it2 = it->second->begin();
-		while(it2 != it->second->end()) {
-			delete it2->second;
-			it2++;
+		std::map<int, Action*>* submap = it->second;
+		if (submap) {
+			std::map<int, Action*>::iterator it2 = submap->begin();
+			while(it2 != it->second->end()) {
+				delete it2->second;
+				it2++;
+			}
+			delete it->second;
 		}
-		delete it->second;
 		it++;
 	}
 }
@@ -31,19 +34,25 @@ void Machine::loadRules(std::istream* rules) {
 		std::string startState;
 		std::getline(*rules,startState,',');
 
-		std::string read;
-		std::getline(*rules,read,',');
+		std::string readStr;
+		std::getline(*rules,readStr,',');
 
-		std::string write;
-		std::getline(*rules,write,',');
+		std::string writeStr;
+		std::getline(*rules,writeStr,',');
 
-		std::string moveTo;
-		std::getline(*rules,moveTo,',');
+		std::string moveToStr;
+		std::getline(*rules,moveToStr,',');
 
 		std::string nextState;
 		std::getline(*rules,nextState);
 
-		printf("rule: %s %s %s %s %s\n", startState.c_str(), read.c_str(), write.c_str(), moveTo.c_str(), nextState.c_str());
+		char read = (readStr.size() > 0) ? readStr[0] : '?' ;
+		char write = (writeStr.size() > 0) ? writeStr[0] : '!' ;
+		Direction moveTo = LEFT;
+		if (moveToStr.size() > 0 && (moveToStr[0] == 'r' || moveToStr[0] == 'R')) {
+			moveTo = RIGHT;
+		}
+		addRule(startState, read, write, moveTo, nextState);
 
 	} while(!rules->eof());
 
