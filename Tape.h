@@ -31,6 +31,7 @@ public:
 
 class Tape: public ITape {
 	Field* head;
+	Field* mostLeft;
 public:
 	Tape(std::istream* initStream);
 	virtual ~Tape();
@@ -39,6 +40,7 @@ public:
 	virtual void moveRight();
 	virtual char val();
 	virtual void setVal(char newValue);
+	virtual void dump(std::ostream& out);
 };
 
 #endif /* TAPE_H_ */

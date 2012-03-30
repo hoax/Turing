@@ -15,6 +15,7 @@ public:
 	virtual void moveRight() = 0;
 	virtual char val() = 0;
 	virtual void setVal(char newValue) = 0;
+	virtual void dump(std::ostream& out) = 0;
 };
 
 #endif /* ITAPE_H_ */

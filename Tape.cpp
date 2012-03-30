@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include "Tape.h"
 
-Tape::Tape(std::istream* initStream) : head(0) {
+Tape::Tape(std::istream* initStream) : head(0), mostLeft(0) {
 	Field* h = 0;
 	while(!initStream->eof()) {
 		int c = initStream->get();
@@ -34,6 +34,7 @@ void Tape::moveLeft() {
 		head = head->prev;
 	} else {
 		head = new Field(0, 0, head);
+		mostLeft = head;
 	}
 }
 
@@ -42,6 +43,8 @@ void Tape::moveRight() {
 		head = head->next;
 	} else {
 		head = new Field(0, head);
+		if (!head->prev)
+			mostLeft = head;
 	}
 }
 
@@ -51,4 +54,18 @@ void Tape::setVal(char newValue) {
 
 char Tape::val() {
 	return head->val;
+}
+
+void Tape::dump(std::ostream& out) {
+	Field* f = mostLeft;
+	out << '\r';
+	while(f) {
+		if (f == head) {
+			out << "\033[1;31;40m" << f->val << "\033[0m";
+		} else {
+			out << f->val;
+		}
+		f = f->next;
+	}
+	out.flush();
 }
