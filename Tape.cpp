@@ -33,7 +33,7 @@ void Tape::moveLeft() {
 	if (head && head->prev) {
 		head = head->prev;
 	} else {
-		head = new Field(0, 0, head);
+		head = new Field('-', 0, head);
 		mostLeft = head;
 	}
 }
@@ -42,7 +42,7 @@ void Tape::moveRight() {
 	if (head && head->next) {
 		head = head->next;
 	} else {
-		head = new Field(0, head);
+		head = new Field('-', head);
 		if (!head->prev)
 			mostLeft = head;
 	}
