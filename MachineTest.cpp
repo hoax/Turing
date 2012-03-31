@@ -27,13 +27,15 @@ int main() {
 	m->step();
 
 	m->setState("z1");
+	std::cout << "state: " << m->getState() << std::endl;
 
 	do {
 		t.dump(std::cout);
-		sleep(1);
 	} while(m->step());
 
 	m->step();
+
+	std::cout << "state: " << m->getState() << std::endl;
 
 	delete m;
 
