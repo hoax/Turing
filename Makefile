@@ -22,6 +22,7 @@ test: clean all runTest
 runTest:
 	./MachineTest
 	./TapeTest
+	./turing rules1.txt aabbcc
 	gcov Tape.cpp | grep -B1 -A0 %
 	gcov Machine.cpp | grep -B1 -A0 %
 	./removeUselessGCov.sh
