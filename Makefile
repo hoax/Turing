@@ -1,7 +1,13 @@
 DEBUG = -ggdb
 RELEASE = -O3
 COVERAGE_FLAGS = -fprofile-arcs -ftest-coverage
-CXXFLAGS += $(WFLAGS) $(DEBUG)
+CXXFLAGS += $(WFLAGS)
+
+ifdef withDebug
+	CXXFLAGS += $(DEBUG)
+else
+	CXXFLAGS += $(RELEASE)
+endif
 
 all: TapeTest MachineTest turing turingStep turingSpeed interceptor.so
 
@@ -34,10 +40,11 @@ runTest:
 	./TapeTest > /dev/null
 	./turingSpeed rules1.txt - > /dev/null
 	-LD_PRELOAD=./interceptor.so ./turingSpeed beaver.txt - > /dev/null
-	gcov Tape.cpp | grep -B1 -A0 %
-	gcov Machine.cpp | grep -B1 -A0 %
+	gcov Tape.cpp > /dev/null
+	gcov Machine.cpp > /dev/null
 	./removeUselessGCov.sh
 	grep "###" *.gcov && false
+	true
 
 clean:
 	$(RM) turing turingSpeed turingStep
