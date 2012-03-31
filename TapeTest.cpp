@@ -17,11 +17,15 @@ int main() {
 	istream* in = new istringstream(s);
 	ITape* t = new Tape(in);
 
-	while(t->val()) {
-		cout << t->val();
-		t->moveRight();
-	}
-	cout << endl;
+	t->moveLeft();
+
+	t->moveRight();
+	t->moveRight();
+	t->moveRight();
+	t->moveRight();
+	t->moveLeft();
+	t->moveRight();
+	t->moveRight();
 
 	delete t;
 	delete in;
