@@ -25,7 +25,6 @@ class Machine: public IMachine {
 	ITape* tape;
 	std::string currentState;
 	std::map<std::string, std::map<int, Action*>* > states;
-	bool stop;
 public:
 	Machine();
 	virtual ~Machine();

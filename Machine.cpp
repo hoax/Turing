@@ -9,7 +9,7 @@
 #include <string>
 #include "Machine.h"
 
-Machine::Machine() : tape(0), stop(0) {
+Machine::Machine() : tape(0) {
 
 }
 
@@ -74,9 +74,6 @@ void Machine::setState(std::string state) {
 }
 
 bool Machine::step() {
-	if (stop)
-		return false;
-
 	int c = tape->val();
 
 	std::map<int, Action*>* actions = states[currentState];
@@ -93,13 +90,13 @@ bool Machine::step() {
 			}
 			setState(a->newState);
 		} else {
-			stop = true;
+			return false;
 		}
 	} else {
-		stop = true;
+		return false;
 	}
 
-	return !stop;
+	return true;
 }
 
 void Machine::setTape(ITape* t) {
