@@ -52,6 +52,7 @@ void Machine::loadRules(std::istream* rules) {
 		if (moveToStr.size() > 0 && (moveToStr[0] == 'r' || moveToStr[0] == 'R')) {
 			moveTo = RIGHT;
 		}
+		//std::cout << "Rule: " << startState << " " << read << " " << write << " " << moveToStr << " " << nextState << std::endl;
 		addRule(startState, read, write, moveTo, nextState);
 
 	} while(!rules->eof());
@@ -67,6 +68,10 @@ void Machine::addRule(std::string state, char read, char write, Direction moveTo
 
 	Action* action = new Action(write, moveTo, newState);
 	(*actions)[(int)read] = action;
+
+	if (currentState.size() == 0) {
+		currentState = state;
+	}
 }
 
 void Machine::setState(std::string state) {
