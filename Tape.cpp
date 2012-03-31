@@ -49,11 +49,11 @@ void Tape::moveRight() {
 }
 
 void Tape::setVal(char newValue) {
-	head->val = newValue;
+	head->val[0] = newValue;
 }
 
 char Tape::val() {
-	return head->val;
+	return head->val[0];
 }
 
 void Tape::dump(std::ostream& out) {
@@ -61,9 +61,9 @@ void Tape::dump(std::ostream& out) {
 	out << '\r';
 	while(f) {
 		if (f == head) {
-			out << "\033[1;31;47m" << f->val << "\033[0m";
+			out << "\033[1;31;47m" << f->val[0] << "\033[0m";
 		} else {
-			out << f->val;
+			out << f->val[0];
 		}
 		f = f->next;
 	}
