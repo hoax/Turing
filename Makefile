@@ -2,7 +2,7 @@ DEBUG = -ggdb
 COVERAGE_FLAGS = -fprofile-arcs -ftest-coverage
 CXXFLAGS += $(WFLAGS) $(DEBUG)
 
-all: TapeTest MachineTest
+all: TapeTest MachineTest turing
 
 %.o: %.cpp %.h
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c -o $@ $<
@@ -11,6 +11,9 @@ TapeTest: Tape.o TapeTest.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 	
 MachineTest: Machine.o Tape.o MachineTest.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+turing: Machine.o Tape.o main.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 	
 test: CXXFLAGS+=${COVERAGE_FLAGS}
