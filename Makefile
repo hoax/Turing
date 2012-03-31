@@ -43,8 +43,7 @@ runTest:
 	gcov Tape.cpp > /dev/null
 	gcov Machine.cpp > /dev/null
 	./removeUselessGCov.sh
-	grep "###" *.gcov && false
-	true
+	grep "###" *.gcov || true
 
 clean:
 	$(RM) turing turingSpeed turingStep
