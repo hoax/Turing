@@ -61,7 +61,7 @@ void Tape::dump(std::ostream& out) {
 	out << '\r';
 	while(f) {
 		if (f == head) {
-			out << "\033[1;31;40m" << f->val << "\033[0m";
+			out << "\033[1;31;47m" << f->val << "\033[0m";
 		} else {
 			out << f->val;
 		}

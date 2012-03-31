@@ -107,3 +107,7 @@ bool Machine::step() {
 void Machine::setTape(ITape* t) {
 	tape = t;
 };
+
+std::string Machine::getState() const {
+	return currentState;
+}

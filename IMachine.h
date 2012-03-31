@@ -22,6 +22,7 @@ public:
 	virtual void setTape(ITape* tape) = 0;
 	virtual void loadRules(std::istream* rules) = 0;
 	virtual void setState(std::string state) = 0;
+	virtual std::string getState() const = 0;
 	virtual void addRule(std::string state, char read, char write, Direction moveTo, std::string newState) = 0;
 	virtual bool step() = 0;
 };

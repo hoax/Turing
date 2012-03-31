@@ -32,6 +32,7 @@ public:
 	virtual void loadRules(std::istream* rules);
 	virtual void setTape(ITape* tape);
 	virtual void setState(std::string state);
+	virtual std::string getState() const;
 	virtual void addRule(std::string state, char read, char write, Direction moveTo, std::string newState);
 	virtual bool step();
 };

@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <unistd.h>
 
 #include "ITape.h"
 #include "Tape.h"
@@ -40,9 +41,15 @@ int main(int argc, char** argv) {
 	m.setTape(&t);
 
 	std::cout << "\033[?25l";
+	std::cout << "\033[s";
 
 	do {
+		std::cout << "\033[u";
 		t.dump(cout);
+		std::cout << std::endl;
+		std::cout << "State: " << m.getState() << std::endl;
+		std::cout.flush();
+		usleep(250000 * 2);
 	} while (m.step());
 
 	std::cout << "\033[?25h" << std::endl;
