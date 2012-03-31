@@ -27,6 +27,7 @@ runTest:
 	./removeUselessGCov.sh
 
 clean:
+	$(RM) turing
 	$(RM) TapeTest
 	$(RM) MachineTest
 	$(RM) *.o *.gcov *.gcda *.gcno
