@@ -12,12 +12,12 @@ Tape::Tape(std::istream* initStream) : head(0), mostLeft(0) {
 	Field* h = 0;
 	while(!initStream->eof()) {
 		int c = initStream->get();
+		moveRight();
+		if (h == 0) {
+			h = head;
+		}
 		if (c != -1) {
-			moveRight();
 			setVal((char)c);
-			if (h == 0) {
-				h = head;
-			}
 		}
 	}
 	head = h;
