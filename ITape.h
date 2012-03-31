@@ -10,7 +10,6 @@
 
 class ITape {
 public:
-	virtual ~ITape() {};
 	virtual void moveLeft() = 0;
 	virtual void moveRight() = 0;
 	virtual char val() = 0;
