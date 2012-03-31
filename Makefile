@@ -40,7 +40,7 @@ runTest:
 	grep "###" *.gcov && false
 
 clean:
-	$(RM) turing
+	$(RM) turing turingSpeed turingStep
 	$(RM) TapeTest
 	$(RM) MachineTest
 	$(RM) *.o *.gcov *.gcda *.gcno
