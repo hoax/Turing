@@ -23,7 +23,8 @@ The second parameter is optional and defines the initial content of the tape. If
 Rules
 -----
 The rules are read from a file, where each line defines one rule. Reading the rules ends by reaching the end of the file or an empty line.
-A rule consists of five parts separated by comma. For example: "A,-,1,R,B"
+A rule consists of five parts separated by comma. For example: `A,-,1,R,B`
+
 The five parts are:
 
 1. current state, one character
@@ -33,3 +34,7 @@ The five parts are:
 5. next state, one character
 
 Execution of the rules starts with the current state being the start state of the first rule.
+
+Test
+----
+Tests exist for 100% code coverage measured by gcov. These tests can be run by executing `make test`. If the target executes without an error, the code is covered 100% otherwise the last lines starting with ### indicate which lines are not covered.
