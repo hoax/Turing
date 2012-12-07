@@ -5,10 +5,9 @@ Interpreter for turing machines
 
 Compile 
 -------
- make all
+To compile run `make all`
 
-The binaries can be built with debug information by setting the option withDebug
- make all withDebug=1
+The binaries can also be built with debug information by setting the option withDebug `make all withDebug=1`
 
 Usage
 -----
@@ -26,6 +25,7 @@ Rules
 The rules are read from a file, where each line defines one rule. Reading the rules ends by reaching the end of the file or an empty line.
 A rule consists of five parts separated by comma. For example: "A,-,1,R,B"
 The five parts are:
+
 1. current state, one character
 2. input char, one character
 3. output char, one character
